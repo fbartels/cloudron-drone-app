@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  drone-agent:
+    container_name: drone-agent
+    image: drone/agent:1
+    command: agent
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_RPC_SERVER=https://drone.9wd.eu
+      - DRONE_RPC_SECRET=QdExkSpgVY5RiC783UcqFgt8mvEs0Mid
+      - DRONE_RUNNER_CAPACITY=2
+      - DRONE_RUNNER_NAME="clifford"
