@@ -50,6 +50,7 @@ drone secret add -repository username/repository-name --name foo --data bar --al
 ## Inspiration
 
 - [Setting up simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
+- [official Drone documentation](https://docs.drone.io/server/provider/gitea/)
 
 ## TODO
 
