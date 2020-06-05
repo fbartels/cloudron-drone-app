@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "id": "com.github.drone",
+  "healthCheckPath": "/",
+  "httpPort": 8000,
+  "addons": {
+    "localstorage": {},
+    "postgresql": {}
+  },
+  "manifestVersion": 2
+}
