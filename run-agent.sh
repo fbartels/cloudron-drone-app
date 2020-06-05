@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 set -x
 
@@ -6,12 +6,22 @@ random_string() {
 	LC_CTYPE=C tr -dc 'a-zA-Z0-9' < /dev/urandom | head -c32
 }
 
-if [ ! -e .env ]; then
-        cat <<-EOF > ".env"
-DRONE_RPC_SERVER=https://drone.9wd.eu
-DRONE_RPC_SECRET=QdExkSpgVY5RiC783UcqFgt8mvEs0Mid
-DRONE_RUNNER_CAPACITY="$(nproc)"
-DRONE_RUNNER_NAME="$(hostname)"
-EOF
-fi
+update_env_file () {
+    varname="$1"
+    varvalue="$2"
+    if ! grep -q "$varname" ./.env; then
+        echo "$varname=$varvalue" >> ./.env
+    else
+        sed -i "/$varname/c $varname=$varvalue" ./.env
+    fi
+}
+
+cloudron pull /app/data/.env .env
+
+. ./.env
+
+update_env_file DRONE_RPC_SERVER "https://$DRONE_SERVER_HOST"
+update_env_file DRONE_RUNNER_CAPACITY "$(nproc)"
+update_env_file DRONE_RUNNER_NAME "$(hostname)"
+
 docker-compose up -d
