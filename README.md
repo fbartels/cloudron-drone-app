@@ -4,6 +4,10 @@ Run the Drone server on Cloudron and the agents locally.
 
 I am using this setup together with a Gitea running on the same Cloudron installation.
 
+## What is Sponsorware?
+
+This project is published as Sponsorware. Which means it is (at first) only available for those that sponsor my work (for example on Github) and therefore allow me to spent time on it. I have collected some thoughs on [Sponsorware on my blog](https://blog.9wd.eu/posts/sponsorware/).
+
 ## Requirements
 
 - `docker-compose`
@@ -60,8 +64,3 @@ drone secret add -repository username/repository-name --name foo --data bar --al
 
 - [Setting up simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
 - [official Drone documentation](https://docs.drone.io/server/provider/gitea/)
-
-## TODO
-
-- [*] remove commited secrets
-- [*] retrieve rpc secret from cloudron
