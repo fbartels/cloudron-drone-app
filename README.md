@@ -6,7 +6,7 @@ I am using this setup together with a Gitea running on the same Cloudron install
 
 ## What is Sponsorware?
 
-This project is published as Sponsorware. Which means it is (at first) only available for those that sponsor my work (for example on Github) and therefore allow me to spent time on it. I have collected some thoughs on [Sponsorware on my blog](https://blog.9wd.eu/posts/sponsorware/).
+This project is published as Sponsorware. Which means it is (at first) only available for those that sponsor my work (for example [on Github](https://github.com/sponsors/fbartels)) and therefore allow me to spent time on it. I have collected some thoughs on [Sponsorware on my blog](https://blog.9wd.eu/posts/sponsorware/).
 
 ## Requirements
 
