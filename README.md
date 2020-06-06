@@ -11,6 +11,15 @@ I am using this setup together with a Gitea running on the same Cloudron install
 - `make`
 - Cloudron CLI
 
+## Installation
+
+- Run `make install` to install the Drone server component at `drone.yourdomain.com` (`yourdomain.com` automatically adapts to your Cloudron setup)
+- Run `make exec` to open the cli of the app and modify `.env` so that it can connect to your Git instance
+- Run `cloudron restart` to restart the app and apply your changes
+- Verify that your setup works by going to `https://drone.yourdomain.com`
+- If all looks good run `run-agent.sh` to start the Drone agent on your local machine
+- Add the Drone configuration to your desired repositories
+
 ## Tips and Tricks
 
 I would also like to share some very useful commands. To install `drone` CLI, follow [official docs](https://docs.drone.io/cli/install/).
