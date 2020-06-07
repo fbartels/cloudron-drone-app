@@ -3,4 +3,5 @@
 .gitignore
 docker-compose.yml
 node_modules
-run-agent.sh
+helpers/*
+runner/*
