@@ -1,6 +1,7 @@
 {
   "version": "0.0.1",
   "id": "com.github.drone",
+  "icon": "file://logo.png",
   "healthCheckPath": "/",
   "httpPort": 8000,
   "addons": {

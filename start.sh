@@ -16,6 +16,7 @@ DRONE_RPC_SECRET=$(random_string)
 DRONE_DATABASE_SECRET=$(random_string)
 DRONE_SERVER_HOST=$CLOUDRON_APP_DOMAIN
 DRONE_DATABASE_DATASOURCE=postgres://$CLOUDRON_POSTGRESQL_USERNAME:$CLOUDRON_POSTGRESQL_PASSWORD@$CLOUDRON_POSTGRESQL_HOST:$CLOUDRON_POSTGRESQL_PORT/$CLOUDRON_POSTGRESQL_DATABASE?sslmode=disable
+#DRONE_USER_CREATE=username:felix,admin:true
 EOF
 fi
 
@@ -23,6 +24,16 @@ fi
 set -a
 . /app/data/.env
 set +x
+
+if [ ! -e /app/data/README.md ]; then
+        cat <<-'EOF' > "/app/data/README.md"
+# Hey there!
+
+Configuration for drone is stored in the file called `.env`. After you have made changes to it you can restart just drone-server by running `supervisorctl restart drone-server`.
+
+To work with drone you need to configure a provider in your `.env` file. See https://docs.drone.io/server/overview/ for instructions.
+EOF
+fi
 
 echo "=> Ensure permissions"
 chown -R cloudron:cloudron /run /app/data
