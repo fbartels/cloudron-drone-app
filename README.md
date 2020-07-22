@@ -10,8 +10,9 @@ This project is published as Sponsorware. Which means it is (at first) only avai
 
 ## Requirements
 
-- `docker-compose`
+- `docker-compose` (on the system where you want to run the agent)
 - `git`
+- `jq`
 - `make`
 - Cloudron CLI
 
