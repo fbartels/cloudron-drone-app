@@ -22,7 +22,7 @@ This project is published as Sponsorware. Which means it is (at first) only avai
 - Run `make exec` to open the cli of the app and modify `.env` so that it can connect to your Git instance
 - Run `cloudron restart` to restart the app and apply your changes
 - Verify that your setup works by going to `https://drone.yourdomain.com`
-- If all looks good run `run-agent.sh` to start the Drone agent on your local machine
+- If all looks good run `runner/start.sh` to start the Drone agent on your local machine (will fetch credentials from the installed app directly)
 - Add the Drone configuration to your desired repositories
 
 ## Tips and Tricks
