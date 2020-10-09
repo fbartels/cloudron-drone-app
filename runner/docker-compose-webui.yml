@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  drone-agent:
+    environment:
+      - DRONE_UI_DISABLE=false
+      - DRONE_UI_USERNAME=root
+      - DRONE_UI_PASSWORD=r00t
+    ports:
+      - "3000:3000"
