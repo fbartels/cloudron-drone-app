@@ -1,0 +1,43 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: cloudron build & update
+  image: fbartels/cloudron-cli
+  volumes:
+  - name: dockersock
+    path: /var/run
+  environment:
+    DOCKER_USERNAME: {from_secret: DOCKER_USERNAME}
+    DOCKER_PASSWORD: {from_secret: DOCKER_PASSWORD}
+    CLOUDRON_SERVER: {from_secret: CLOUDRON_SERVER}
+    CLOUDRON_TOKEN: {from_secret: CLOUDRON_TOKEN}
+  commands:
+  - dockerize -wait file:///var/run/docker.sock -timeout 60s
+  - docker ps -a
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - make build
+  - make update-ci
+  when:
+    branch:
+      include:
+      - master
+
+services:
+- name: docker
+  image: docker:dind
+  privileged: true
+  command: [ --storage-driver=aufs]
+  volumes:
+  - name: dockersock
+    path: /var/run
+  when:
+    branch:
+      include:
+      - master
+
+volumes:
+- name: dockersock
+  temp: {}

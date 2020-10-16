@@ -1,5 +1,7 @@
 CLOUDRON_APP ?= drone
 CLOUDRON_ID := $(shell jq -r .id CloudronManifest.json)
+CLOUDRON_SERVER ?= my.9wd.eu
+CLOUDRON_TOKEN ?=123
 DOCKER_REPO ?= fbartels
 
 .PHONY: default
@@ -16,6 +18,10 @@ build:
 .PHONY: update
 update: build
 	cloudron update --app ${CLOUDRON_APP}
+
+.PHONY: update-ci
+update-ci:
+	cloudron update --server ${CLOUDRON_SERVER} --token ${CLOUDRON_TOKEN} --app ${CLOUDRON_APP}
 
 .PHONY: install
 install: build
