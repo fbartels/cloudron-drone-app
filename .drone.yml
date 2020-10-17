@@ -4,40 +4,56 @@ type: docker
 name: default
 
 steps:
-- name: cloudron build & update
-  image: fbartels/cloudron-cli
+- name: set version
+  image: golang:1.12
+  commands:
+  - "current_version=$(grep drone/drone: Dockerfile | cut -d' ' -f 2 | cut -d: -f 2)"
+  - timestamp=$(date +%s)
+  - echo -n "$current_version-$timestamp" > .tags
+- name: docker build
+  image: docker:dind
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - docker ps -a
+  - docker build -t fbartels/com.github.drone:latest .
+- name: docker push
+  image: docker:dind
   volumes:
   - name: dockersock
     path: /var/run
   environment:
     DOCKER_USERNAME: {from_secret: DOCKER_USERNAME}
     DOCKER_PASSWORD: {from_secret: DOCKER_PASSWORD}
+  commands:
+  - current_version=$(cat .tags)
+  - docker tag fbartels/com.github.drone:latest fbartels/com.github.drone:$current_version
+  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+  - docker push fbartels/com.github.drone:latest
+  - docker push fbartels/com.github.drone:$current_version
+  when:
+    branch:
+      - master
+    event:
+      exclude:
+      - pull_request
+- name: cloudron update
+  image: fbartels/cloudron-cli:latest
+  environment:
     CLOUDRON_SERVER: {from_secret: CLOUDRON_SERVER}
     CLOUDRON_TOKEN: {from_secret: CLOUDRON_TOKEN}
   commands:
-  - dockerize -wait file:///var/run/docker.sock -timeout 60s
-  - docker ps -a
-  - echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-  - make build
-  - make update-ci
+  - current_version=$(cat .tags)
+  - cloudron update --server $CLOUDRON_SERVER --token $CLOUDRON_TOKEN --app drone --image fbartels/com.github.drone:$current_version
   when:
     branch:
-      include:
       - master
-
-services:
-- name: docker
-  image: docker:dind
-  privileged: true
-  command: [ --storage-driver=aufs]
-  volumes:
-  - name: dockersock
-    path: /var/run
-  when:
-    branch:
-      include:
-      - master
+    event:
+      exclude:
+      - pull_request
 
 volumes:
 - name: dockersock
-  temp: {}
+  host:
+    path: /var/run/

@@ -1,2 +1,4 @@
 .env
 runner/.env
+secrets.txt
+.tags

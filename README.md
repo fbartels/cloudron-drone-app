@@ -44,13 +44,13 @@ drone info
 You can also run pipelines directly with the Drone CLI:
 
 ```bash
-drone exec --secret-file drone_secrets.yaml .drone.yml
+drone exec --secret-file secrets.txt .drone.yml
 ```
 
-A template for `drone-secrets.yaml`:
+A template for `secrets.txt`:
 
-```yaml
-slack_url: https://hooks.slack.com/services/xxxxxxxxxxxx
+```bash
+slack_url=https://hooks.slack.com/services/xxxxxxxxxxxx
 ```
 
 ### Adding secrets through CLI
