@@ -17,5 +17,5 @@ tag: build
 .PHONY: push
 push: tag
 	docker push $(DOCKER_REPO)/$(DOCKER_IMAGE):latest
-	#docker push $(DOCKER_REPO)/$(DOCKER_IMAGE):$(VERSION)
+	docker push $(DOCKER_REPO)/$(DOCKER_IMAGE):$(VERSION)
 
