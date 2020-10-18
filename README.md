@@ -61,6 +61,14 @@ You can either add secrets through the web UI or use drone directly from your te
 drone secret add -repository username/repository-name --name foo --data bar --allow-pull-request
 ```
 
+### Trigger build via curl
+
+```bash
+curl -X POST -i https://drone.9wd.eu/api/repos/felix/cloudron-drone-app/builds -H "Authorization: Bearer your-token"
+```
+
+Get token from https://drone.9wd.eu/account
+
 ## Inspiration
 
 - [Setting up simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
