@@ -50,8 +50,7 @@ steps:
     branch:
       - master
     event:
-      exclude:
-      - pull_request
+      - promote
 
 volumes:
 - name: dockersock
