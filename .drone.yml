@@ -36,8 +36,7 @@ steps:
     branch:
       - master
     event:
-      exclude:
-      - pull_request
+      - promote
 - name: cloudron update
   image: fbartels/cloudron-cli:latest
   environment:
