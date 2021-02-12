@@ -1,6 +1,6 @@
-FROM drone/drone:1.10.0 as drone
+FROM drone/drone:1.10.1 as drone
 
-FROM cloudron/base:2.0.0@sha256:f9fea80513aa7c92fe2e7bf3978b54c8ac5222f47a9a32a7f8833edf0eb5a4f4
+FROM cloudron/base:3.0.0@sha256:455c70428723e3a823198c57472785437eb6eab082e79b3ff04ea584faf46e92
 
 EXPOSE 8000
 
