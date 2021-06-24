@@ -1,4 +1,4 @@
-FROM drone/drone:1.10.1 as drone
+FROM drone/drone:2.0.1 as drone
 
 FROM cloudron/base:3.0.0@sha256:455c70428723e3a823198c57472785437eb6eab082e79b3ff04ea584faf46e92
 
