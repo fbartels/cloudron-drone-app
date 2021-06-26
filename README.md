@@ -69,6 +69,13 @@ curl -X POST -i https://drone.9wd.eu/api/repos/felix/cloudron-drone-app/builds -
 
 Get token from https://drone.9wd.eu/account
 
+### Webhooks do not trigger builds in Drone?
+
+- remove the webhook in Gitea
+- go to Drone dashboard and disable the individual project in the settings
+- reenable the project
+- got back to Gitea and "test delivery" of your new webhook
+
 ## Inspiration
 
 - [Setting up simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
