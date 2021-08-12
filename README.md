@@ -20,6 +20,9 @@ This project is published as Sponsorware. Which means it is (at first) only avai
 
 - Run `DOCKER_REPO=your-docker-hub-user make install` to install the Drone server component at `drone.yourdomain.com` (`yourdomain.com` automatically adapts to your Cloudron setup)
 - Run `make exec` to open the cli of the app and modify `.env` so that it can connect to your Git instance
+  - refer to https://readme.drone.io/server/provider/gitea/#create-an-oauth-application regarding the oauth registration in Gitea
+  - the drone instance is running at `drone.yourdomain.com` and the redirect url would then be `https://drone.yourdomain.com/login`
+  - the secrets are automatically created and inserted into `.env`
 - Run `cloudron restart` to restart the app and apply your changes
 - Verify that your setup works by going to `https://drone.yourdomain.com`
 - If all looks good run `runner/start.sh` to start the Drone agent on your local machine (will fetch credentials from the installed app directly)
