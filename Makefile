@@ -17,7 +17,7 @@ build:
 
 .PHONY: update
 update: build
-	cloudron update --app ${CLOUDRON_APP}
+	cloudron update --server ${CLOUDRON_SERVER} --app ${CLOUDRON_APP}
 
 .PHONY: update-ci
 update-ci:
