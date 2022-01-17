@@ -8,5 +8,6 @@
     "localstorage": {},
     "postgresql": {}
   },
-  "manifestVersion": 2
+  "manifestVersion": 2,
+  "postInstallMessage": "file://POSTINSTALL.md"
 }
