@@ -9,5 +9,11 @@
     "postgresql": {}
   },
   "manifestVersion": 2,
-  "postInstallMessage": "file://POSTINSTALL.md"
+  "postInstallMessage": "file://POSTINSTALL.md",
+  "website": "https://drone.io/",
+  "title": "Drone CI",
+  "author": "Harness",
+  "tagline": "Self-service Continuous Integration platform for busy development teams.",
+  "tags": [ "golang", "ci" ],
+  "documentationUrl": "https://github.com/fbartels/cloudron-drone-app"
 }
