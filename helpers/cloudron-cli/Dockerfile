@@ -7,5 +7,5 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # use --unsafe to not execute post actions as user nobody
-RUN npm -g install cloudron@4.7.0 --unsafe && npm cache clean --force && \
+RUN npm -g install cloudron@4.15.2 --unsafe && npm cache clean --force && \
     cloudron --version
