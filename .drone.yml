@@ -4,6 +4,11 @@ type: docker
 name: default
 
 steps:
+# https://github.com/weastur/metalinter
+- name: lint
+  image: weastur/metalinter
+  commands:
+  - hadolint Dockerfile
 - name: set version
   image: golang:1.12
   commands:
