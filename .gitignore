@@ -2,3 +2,4 @@
 runner/.env
 secrets.txt
 .tags
+.vscode/*
