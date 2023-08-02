@@ -20,8 +20,8 @@ cloudron pull /app/data/.env .env
 
 . ./.env
 
-update_env_file DRONE_RPC_SERVER "https://$DRONE_SERVER_HOST"
+update_env_file DRONE_RPC_HOST "$DRONE_SERVER_HOST"
 update_env_file DRONE_RUNNER_CAPACITY "$(nproc)"
 update_env_file DRONE_RUNNER_NAME "$(hostname)"
 
-docker-compose up -d
+docker compose up -d
