@@ -2,15 +2,11 @@
 
 Run the Drone server on Cloudron and the agents locally.
 
-I am using this setup together with a Gitea running on the same Cloudron installation.
-
-## What is Sponsorware?
-
-This project is published as Sponsorware. Which means it is (at first) only available for those that sponsor my work (for example [on Github](https://github.com/sponsors/fbartels)) and therefore allow me to spent time on it. I have collected some thoughs on [Sponsorware on my blog](https://blog.9wd.eu/posts/sponsorware/).
+I use this setup together with a Gitea running on the same Cloudron installation.
 
 ## Requirements
 
-- `docker-compose` (on the system where you want to run the agent)
+- `docker compose` (on the system you want to run the agent on)
 - `git`
 - `jq`
 - `make`
@@ -18,23 +14,23 @@ This project is published as Sponsorware. Which means it is (at first) only avai
 
 ## Installation
 
-- Run `DOCKER_REPO=your-docker-hub-user make install` to install the Drone server component at `drone.yourdomain.com` (`yourdomain.com` automatically adapts to your Cloudron setup)
-- Run `make exec` to open the cli of the app and modify `.env` so that it can connect to your Git instance
-  - refer to https://readme.drone.io/server/provider/gitea/#create-an-oauth-application regarding the oauth registration in Gitea
-  - the drone instance is running at `drone.yourdomain.com` and the redirect url would then be `https://drone.yourdomain.com/login`
-  - the secrets are automatically created and inserted into `.env`
-- Run `cloudron restart` to restart the app and apply your changes
-- Verify that your setup works by going to `https://drone.yourdomain.com`
-- If all looks good run `runner/start.sh` to start the Drone agent on your local machine (will fetch credentials from the installed app directly)
-- Add the Drone configuration to your desired repositories
+- Run `DOCKER_REPO=your-docker-hub-user make install` to install the Drone server component at `drone.yourdomain.com` (`yourdomain.com` will adapt automatically to your Cloudron setup).
+- Run `make exec' to open the app's CLI and modify the `.env' so that it can connect to your Git instance.
+  - See https://readme.drone.io/server/provider/gitea/#create-an-oauth-application for information on OAuth registration in Gitea.
+  - The drone instance runs at `drone.yourdomain.com` and the redirect URL would be `https://drone.yourdomain.com/login`.
+  - The secrets are automatically created and added to the `.env` file.
+- Run `cloudron restart` to restart the application and apply your changes.
+- Check that your setup works by going to `https://drone.yourdomain.com`.
+- If all looks good, run `runner/start.sh' to start the Drone agent on your local machine (it will grab the credentials directly from the installed app).
+- Add the drone configuration to your desired repositories
 
-## Tips and Tricks
+## Tips and tricks
 
-I would also like to share some very useful commands. To install `drone` CLI, follow [official docs](https://docs.drone.io/cli/install/).
+I would also like to share some very useful commands. To install the `drone` CLI, follow the [official docs](https://docs.drone.io/cli/install/).
 
 ### Using drone-cli
 
-Go to your [user settings](https://drone.9wd.eu/account) and get login information
+Go to your [user settings](https://drone.9wd.eu/account) and get the login information
 
 ```bash
 export DRONE_SERVER=https://drone.9wd.eu
@@ -42,9 +38,9 @@ export DRONE_TOKEN=your token
 drone info
 ```
 
-### Executing pipelines directly
+### Running pipelines directly
 
-You can also run pipelines directly with the Drone CLI:
+You can also run pipelines directly from the Drone CLI:
 
 ```bash
 drone exec --secret-file secrets.txt .drone.yml
@@ -56,9 +52,9 @@ A template for `secrets.txt`:
 slack_url=https://hooks.slack.com/services/xxxxxxxxxxxx
 ```
 
-### Adding secrets through CLI
+### Adding secrets from the CLI
 
-You can either add secrets through the web UI or use drone directly from your terminal:
+You can either add secrets via the web interface or use drone directly from your terminal:
 
 ```bash
 drone secret add -repository username/repository-name --name foo --data bar --allow-pull-request
@@ -72,14 +68,14 @@ curl -X POST -i https://drone.9wd.eu/api/repos/felix/cloudron-drone-app/builds -
 
 Get token from https://drone.9wd.eu/account
 
-### Webhooks do not trigger builds in Drone?
+### Webhooks do not trigger builds in drone?
 
-- remove the webhook in Gitea
-- go to Drone dashboard and disable the individual project in the settings
-- reenable the project
-- got back to Gitea and "test delivery" of your new webhook
+- Remove the webhook in Gitea
+- Go to the Drone dashboard and disable the individual project in the settings.
+- re-enable the project
+- Go back to Gitea and "test delivery" your new webhook.
 
 ## Inspiration
 
-- [Setting up simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
-- [official Drone documentation](https://docs.drone.io/server/provider/gitea/)
+- Setting up a simple, self-hosted & fast CI/CD solution with Drone.io](https://webhookrelay.com/blog/2019/02/11/using-drone-for-simple-selfhosted-ci-cd/)
+- Official Drone documentation](https://docs.drone.io/server/provider/gitea/)
