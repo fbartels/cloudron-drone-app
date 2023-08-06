@@ -1,4 +1,4 @@
-FROM node:lts-alpine3.12
+FROM node:lts-alpine
 RUN apk add --no-cache make python3 zip
 # use --unsafe to not execute post actions as user nobody
-RUN npm -g install cloudron-surfer@5.17.5 --unsafe && npm cache clean --force && surfer --version
+RUN npm -g install cloudron-surfer@6.0.0 --unsafe && npm cache clean --force && surfer --version
