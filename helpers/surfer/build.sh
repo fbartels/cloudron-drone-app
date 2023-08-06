@@ -19,6 +19,12 @@ else
 fi
 
 $CMD build . -t "$DOCKER_IMAGE:latest"
+$CMD build . --target distrobox -t "$DOCKER_IMAGE:distrobox"
+
 $CMD tag "$DOCKER_IMAGE:latest" "$DOCKER_IMAGE:$VERSION"
-$CMD push "$DOCKER_IMAGE:latest"
-$CMD push "$DOCKER_IMAGE:$VERSION"
+
+if [ "${1:-}" == "push" ]; then
+	$CMD push "$DOCKER_IMAGE:latest"
+	$CMD push "$DOCKER_IMAGE:$VERSION"
+	$CMD push "$DOCKER_IMAGE:distrobox"
+fi
